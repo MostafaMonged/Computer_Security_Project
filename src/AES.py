@@ -8,39 +8,24 @@ import binascii
 
 def encrypt_file(input_file, output_file, key):
     cipher = AES.new(key, AES.MODE_ECB)
+    data = ""
     with open(input_file, 'rb') as file_in:
-        with open(output_file, 'wb') as file_out:
-            while True:
-                chunk = file_in.read(16)
-                if len(chunk) == 0:
-                    break
-                elif len(chunk) % 16 != 0:
-                    chunk = pad(chunk, AES.block_size)
-                encrypted_chunk = cipher.encrypt(chunk)
-                hex_data = binascii.hexlify(encrypted_chunk)
-                file_out.write(hex_data)
+        data = file_in.read()
+    data = pad(data, AES.block_size)
+    encrypted_data = cipher.encrypt(data)
+    with open(output_file, 'wb') as file_out:
+        file_out.write(binascii.hexlify(encrypted_data))
+
 
 def decrypt_file(input_file, output_file, key):
     cipher = AES.new(key, AES.MODE_ECB)
+    data = b''
     with open(input_file, 'rb') as file_in:
-        with open(output_file, 'wb') as file_out:
-            while True:
-                chunk = file_in.read(32)
-                if len(chunk) == 0:
-                    break
-                binary_data = binascii.unhexlify(chunk)
-                decrypted_chunk = cipher.decrypt(binary_data)
-                """
-                checks if there are no more bytes left to read in the file. If this is true, 
-                then the current chunk is the last chunk of the file 
-                """
-                if file_in.peek() == b'':
-                    try:
-                        decrypted_chunk = unpad(decrypted_chunk, AES.block_size)
-                    except ValueError:
-                        # Padding is incorrect, assume data was not padded
-                        pass
-                file_out.write(decrypted_chunk)
+        data = binascii.unhexlify(file_in.read())
+    decrypted_data = unpad(cipher.decrypt(data), AES.block_size)
+    with open(output_file, 'wb') as file_out:
+        file_out.write(decrypted_data)
+
 
 # Usage example this is hardcodeded for testing purposes
 # will be changed when using GUI
