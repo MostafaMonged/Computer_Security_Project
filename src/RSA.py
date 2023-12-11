@@ -21,8 +21,6 @@ privateKeys = {"Alice": alice_private_key, "Bob": bob_private_key}
 
 def sign_RSA(plain_text, person):
     private_key = privateKeys.get(person)
-    if private_key is None:
-        raise ValueError(f"No private key found for {person}")
 
     # Sign the message
     signature = private_key.sign(
@@ -36,8 +34,6 @@ def sign_RSA(plain_text, person):
 
     # Write signature to file
     write_to_file(f"{person}_signed_text.txt", signature)
-
-    return signature
 
 
 def encrypt_RSA(plain_text, person):
@@ -56,8 +52,6 @@ def encrypt_RSA(plain_text, person):
     # Write cipher text to file
     write_to_file(f"{person}_encrypted_text.txt", cipher_text)
 
-    return cipher_text
-
 
 def write_to_file(filename, data):
     mode = 'wb' if isinstance(data, bytes) else 'w'
@@ -67,8 +61,6 @@ def write_to_file(filename, data):
 
 def decrypt_RSA(cipher_text, person):
     private_key = privateKeys.get(person)
-    if private_key is None:
-        raise ValueError(f"No private key found for {person}")
 
     # Decrypt the message
     plain_text = private_key.decrypt(
@@ -102,5 +94,5 @@ def verify_RSA(signature, message, person):
         write_to_file(f"{person}_verified_text.txt",
                       f"Verification successful." + "\n" + f"Message: \"{message}\" is authentic.")
 
-    except Exception as e:
-        write_to_file(f"{person}_verified_text.txt", f"{person} - Verification failed. {e}")
+    except Exception:
+        write_to_file(f"{person}_verified_text.txt", f"Verification failed.")
