@@ -43,7 +43,7 @@
                         </property>
                         <widget class="QWidget" name="tab1">
                             <attribute name="title">
-                                <string>AES</string>
+                                <string>AES Encryption</string>
                             </attribute>
                             <layout class="QHBoxLayout" name="horizontalLayout_2">
                                 <item>
@@ -95,35 +95,35 @@
                                     <widget class="QWidget" name="Buttons_Widget" native="true">
                                         <layout class="QVBoxLayout" name="verticalLayout">
                                             <item>
-                                                <widget class="QPushButton" name="Load_File">
+                                                <widget class="QPushButton" name="Load_File_AES">
                                                     <property name="text">
                                                         <string>Load File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Encrypt">
+                                                <widget class="QPushButton" name="EncryptAES">
                                                     <property name="text">
                                                         <string>Encrypt</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Decrypt">
+                                                <widget class="QPushButton" name="DecryptAES">
                                                     <property name="text">
                                                         <string>Decrypt</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Export_File">
+                                                <widget class="QPushButton" name="Export_File_AES">
                                                     <property name="text">
                                                         <string>Export File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Clear">
+                                                <widget class="QPushButton" name="Clear_AES">
                                                     <property name="text">
                                                         <string>Clear</string>
                                                     </property>
@@ -152,7 +152,7 @@
                         </widget>
                         <widget class="QWidget" name="tab2">
                             <attribute name="title">
-                                <string>tab2</string>
+                                <string>RSA Encryption</string>
                             </attribute>
                             <layout class="QHBoxLayout" name="horizontalLayout_2">
                                 <item>
@@ -204,35 +204,35 @@
                                     <widget class="QWidget" name="Buttons_Widget" native="true">
                                         <layout class="QVBoxLayout" name="verticalLayout">
                                             <item>
-                                                <widget class="QPushButton" name="Load_File">
+                                                <widget class="QPushButton" name="Load_File_RSA">
                                                     <property name="text">
                                                         <string>Load File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Scan">
+                                                <widget class="QPushButton" name="EncryptRSA">
                                                     <property name="text">
-                                                        <string>Scan</string>
+                                                        <string>Encrypt</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Parse">
+                                                <widget class="QPushButton" name="DecryptRSA">
                                                     <property name="text">
-                                                        <string>Parse</string>
+                                                        <string>Decrypt</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Export_File">
+                                                <widget class="QPushButton" name="Export_File_RSA">
                                                     <property name="text">
                                                         <string>Export File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Clear">
+                                                <widget class="QPushButton" name="Clear_RSA">
                                                     <property name="text">
                                                         <string>Clear</string>
                                                     </property>
@@ -261,7 +261,7 @@
                         </widget>
                         <widget class="QWidget" name="tab3">
                             <attribute name="title">
-                                <string>tab3</string>
+                                <string>RSA</string>
                             </attribute>
                             <layout class="QHBoxLayout" name="horizontalLayout_2">
                                 <item>
@@ -313,35 +313,35 @@
                                     <widget class="QWidget" name="Buttons_Widget" native="true">
                                         <layout class="QVBoxLayout" name="verticalLayout">
                                             <item>
-                                                <widget class="QPushButton" name="Load_File">
+                                                <widget class="QPushButton" name="Load_File_Certificate">
                                                     <property name="text">
                                                         <string>Load File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Scan">
+                                                <widget class="QPushButton" name="SignRSA">
                                                     <property name="text">
-                                                        <string>Scan</string>
+                                                        <string>Sign</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Parse">
+                                                <widget class="QPushButton" name="VerifyRSA">
                                                     <property name="text">
-                                                        <string>Parse</string>
+                                                        <string>Verify</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Export_File">
+                                                <widget class="QPushButton" name="Export_File_Certificate">
                                                     <property name="text">
                                                         <string>Export File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Clear">
+                                                <widget class="QPushButton" name="Clear_Certificate">
                                                     <property name="text">
                                                         <string>Clear</string>
                                                     </property>
@@ -370,7 +370,7 @@
                         </widget>
                         <widget class="QWidget" name="tab4">
                             <attribute name="title">
-                                <string>tab4</string>
+                                <string>SHA-512</string>
                             </attribute>
                             <layout class="QHBoxLayout" name="horizontalLayout_2">
                                 <item>
@@ -422,35 +422,35 @@
                                     <widget class="QWidget" name="Buttons_Widget" native="true">
                                         <layout class="QVBoxLayout" name="verticalLayout">
                                             <item>
-                                                <widget class="QPushButton" name="Load_File">
+                                                <widget class="QPushButton" name="Load_File_SHA">
                                                     <property name="text">
                                                         <string>Load File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Scan">
+                                                <widget class="QPushButton" name="CalcSHA">
                                                     <property name="text">
-                                                        <string>Scan</string>
+                                                        <string>Calc SHA-512</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Parse">
+                                                <widget class="QPushButton" name="VerifySHA">
                                                     <property name="text">
-                                                        <string>Parse</string>
+                                                        <string>Verify SHA-512</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Export_File">
+                                                <widget class="QPushButton" name="Export_File_SHA">
                                                     <property name="text">
                                                         <string>Export File</string>
                                                     </property>
                                                 </widget>
                                             </item>
                                             <item>
-                                                <widget class="QPushButton" name="Clear">
+                                                <widget class="QPushButton" name="Clear_SHA">
                                                     <property name="text">
                                                         <string>Clear</string>
                                                     </property>

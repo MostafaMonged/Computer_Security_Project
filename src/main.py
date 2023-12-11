@@ -1,9 +1,7 @@
-
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
-
 
 # Load the .ui file and generate the corresponding class dynamically
 Ui_MainWindow, _ = loadUiType("./GUI.ui")
@@ -41,20 +39,60 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.code_editor = self.textEdit3
         self.code_editor = self.textEdit4
 
+        # AES Encryption action listeners
         # Load File button action listener
-        self.Load_File.clicked.connect(self.loadFile)
+        self.Load_File_AES.clicked.connect(self.loadFile)
 
-        # Scan button action listener
-        self.Scan.clicked.connect(self.scanCode)
-
-        # Parse button action listener
-        self.Parse.clicked.connect(self.parseCode)
+        self.EncryptAES.clicked.connect(self.encryptAES)
+        self.DecryptAES.clicked.connect(self.decryptAES)
 
         # Export button action listener
-        self.Export_File.clicked.connect(self.exportFile)
+        self.Export_File_AES.clicked.connect(self.exportFile)
 
         # Clear button action listener
-        self.Clear.clicked.connect(self.clear_all)
+        self.Clear_AES.clicked.connect(self.clear_all)
+        # ===============================================================================================
+        # RSA Encryption action listener
+        # Load File button action listener
+        self.Load_File_RSA.clicked.connect(self.loadFile)
+
+        # Encrypt/Decrypt buttons action listeners
+        self.EncryptRSA.clicked.connect(self.encryptRSA)
+        self.DecryptRSA.clicked.connect(self.decryptRSA)
+
+        # Export button action listener
+        self.Export_File_RSA.clicked.connect(self.exportFile)
+
+        # Clear button action listener
+        self.Clear_RSA.clicked.connect(self.clear_all)
+        # ===============================================================================================
+        # RSA Verification action listener
+        # Load File button action listener
+        self.Load_File_Certificate.clicked.connect(self.loadFile)
+
+        # Encrypt/Decrypt buttons action listeners
+        self.SignRSA.clicked.connect(self.signRSA)
+        self.VerifyRSA.clicked.connect(self.verifyRSA)
+
+        # Export button action listener
+        self.Export_File_Certificate.clicked.connect(self.exportFile)
+
+        # Clear button action listener
+        self.Clear_Certificate.clicked.connect(self.clear_all)
+        # ===============================================================================================
+        # Sha-512 Hashing action listener
+        # Load File button action listener
+        self.Load_File_SHA.clicked.connect(self.loadFile)
+
+        # Encrypt/Decrypt buttons action listeners
+        self.CalcSHA.clicked.connect(self.encryptSHA512)
+        self.VerifySHA.clicked.connect(self.decryptSHA512)
+
+        # Export button action listener
+        self.Export_File_SHA.clicked.connect(self.exportFile)
+
+        # Clear button action listener
+        self.Clear_SHA.clicked.connect(self.clear_all)
 
         # # Table for output display
         # self.output_table = self.tableWidget1
@@ -95,20 +133,28 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 file_contents = file.read()
                 self.code_editor.setPlainText(file_contents)
 
-    def scanCode(self):
+    def encryptAES(self):
+        pass
 
-        # Clear the table before adding new data
-        self.output_table.setRowCount(0)
+    def decryptAES(self):
+        pass
 
-        # Add a new row to the table
-        rowPosition = self.output_table.rowCount()
-        self.output_table.insertRow(rowPosition)
+    def encryptRSA(self):
+        pass
 
-        # Set the values from the tuple into the columns
-        self.output_table.setItem(rowPosition, 0, QTableWidgetItem(str()))
-        self.output_table.setItem(rowPosition, 1, QTableWidgetItem(str()))
+    def decryptRSA(self):
+        pass
 
-    def parseCode(self):
+    def signRSA(self):
+        pass
+
+    def verifyRSA(self):
+        pass
+
+    def encryptSHA512(self):
+        pass
+
+    def decryptSHA512(self):
         pass
 
     def exportFile(self):
@@ -117,16 +163,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             self, "Save File", "", "Text Files (*.txt)", options=options
         )
 
-        if file_name:
-            with open(file_name, "w") as file:
-                # Export the table data
-                for row in range(self.output_table.rowCount()):
-                    column1 = self.output_table.item(row, 0).text()
-                    column2 = self.output_table.item(row, 1).text()
-                    file.write(f"{column1}\t\t{column2}\n")
-
     def clear_all(self):
-        self.output_table.setRowCount(0)
         self.code_editor.setPlainText("")
 
 
