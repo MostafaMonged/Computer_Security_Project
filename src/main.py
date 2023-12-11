@@ -36,7 +36,10 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.setStyleSheet(open("css.css").read())
 
         # Text box for code input
-        self.code_editor = self.textEdit
+        self.code_editor = self.textEdit1
+        self.code_editor = self.textEdit2
+        self.code_editor = self.textEdit3
+        self.code_editor = self.textEdit4
 
         # Load File button action listener
         self.Load_File.clicked.connect(self.loadFile)
@@ -53,12 +56,33 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         # Clear button action listener
         self.Clear.clicked.connect(self.clear_all)
 
-        # Table for output display
-        self.output_table = self.tableWidget
-        self.output_table.setColumnCount(2)  # Two columns for the tuple elements
-        self.output_table.setHorizontalHeaderLabels(["Token", "Type"])  # Column headers
-        self.output_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.output_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # # Table for output display
+        # self.output_table = self.tableWidget1
+        # self.output_table.setColumnCount(2)  # Two columns for the tuple elements
+        # self.output_table.setHorizontalHeaderLabels(["Token", "Type"])  # Column headers
+        # self.output_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self.output_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        # # Table for output display
+        # self.output_table = self.tableWidget2
+        # self.output_table.setColumnCount(2)  # Two columns for the tuple elements
+        # self.output_table.setHorizontalHeaderLabels(["Token", "Type"])  # Column headers
+        # self.output_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self.output_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        #
+        # # Table for output display
+        # self.output_table = self.tableWidget3
+        # self.output_table.setColumnCount(2)  # Two columns for the tuple elements
+        # self.output_table.setHorizontalHeaderLabels(["Token", "Type"])  # Column headers
+        # self.output_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self.output_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        #
+        # # Table for output display
+        # self.output_table = self.tableWidget4
+        # self.output_table.setColumnCount(2)  # Two columns for the tuple elements
+        # self.output_table.setHorizontalHeaderLabels(["Token", "Type"])  # Column headers
+        # self.output_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        # self.output_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def loadFile(self):
         options = QFileDialog.Options()
