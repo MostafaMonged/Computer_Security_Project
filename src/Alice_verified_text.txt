@@ -1,0 +1,2 @@
+Verification successful.
+Message: "Hello, cryptography!" is authentic.
