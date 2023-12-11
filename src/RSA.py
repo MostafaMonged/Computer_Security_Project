@@ -2,6 +2,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
+import binascii
 
 # Generate RSA key pairs for Alice and Bob
 alice_private_key = rsa.generate_private_key(
@@ -33,7 +34,7 @@ def sign_RSA(plain_text, person):
     )
 
     # Write signature to file
-    write_to_file(f"{person}_signed_text.txt", signature)
+    write_to_file(f"{person}_signed_text.txt", binascii.hexlify(signature))
 
 
 def encrypt_RSA(plain_text, person):
@@ -50,7 +51,7 @@ def encrypt_RSA(plain_text, person):
     )
 
     # Write cipher text to file
-    write_to_file(f"{person}_encrypted_text.txt", cipher_text)
+    write_to_file(f"{person}_encrypted_text.txt", binascii.hexlify(cipher_text))
 
 
 def write_to_file(filename, data):
@@ -64,7 +65,7 @@ def decrypt_RSA(cipher_text, person):
 
     # Decrypt the message
     plain_text = private_key.decrypt(
-        cipher_text,
+        binascii.unhexlify(cipher_text),
         padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
             algorithm=hashes.SHA256(),
@@ -82,7 +83,7 @@ def verify_RSA(signature, message, person):
     try:
         # Verify the signature
         public_key.verify(
-            signature,
+            binascii.unhexlify(signature),
             message.encode('utf-8'),
             padding.PSS(
                 mgf=padding.MGF1(hashes.SHA256()),
