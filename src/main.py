@@ -38,16 +38,30 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.code_editor = self.textEdit2
         self.code_editor = self.textEdit3
         self.code_editor = self.textEdit4
+        self.code_editor = self.textEdit5
 
+        # X action listeners
+        # Load File button action listener
+        self.Load_File_AES.clicked.connect(self.loadFile)
+
+        self.Encrypt_AES.clicked.connect(self.encryptAES)
+        self.Decrypt_AES.clicked.connect(self.decryptAES)
+
+        # Connect the currentIndexChanged signal to the slot
+        self.EncryptionMode_AES.currentIndexChanged.connect(self.on_combo_box_current_index_changed)
+
+        # Export button action listener
+        self.Export_File_AES.clicked.connect(self.exportFile)
+
+        # Clear button action listener
+        self.Clear_AES.clicked.connect(self.clear_all)
+        # ===============================================================================================
         # AES Encryption action listeners
         # Load File button action listener
         self.Load_File_AES.clicked.connect(self.loadFile)
 
         self.EncryptAES.clicked.connect(self.encryptAES)
         self.DecryptAES.clicked.connect(self.decryptAES)
-
-        # Export button action listener
-        self.Export_File_AES.clicked.connect(self.exportFile)
 
         # Clear button action listener
         self.Clear_AES.clicked.connect(self.clear_all)
@@ -137,6 +151,9 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         pass
 
     def decryptAES(self):
+        pass
+
+    def on_combo_box_activated(self, index):
         pass
 
     def encryptRSA(self):
