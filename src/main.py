@@ -173,6 +173,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
     def load_rsa_key(self):
         file_path = self.choose_file()
         print("Loading RSA Key from:", file_path)
+        store_file_path(file_path)
         # self.Output_X.toPlainText(file_path)
         # load_private_keys(file_path)
 
