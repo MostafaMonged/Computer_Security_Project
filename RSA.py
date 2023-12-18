@@ -6,6 +6,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+
 # Generate RSA key pairs for Alice and Bob
 alice_private_key = rsa.generate_private_key(
     public_exponent=65537,
@@ -41,12 +42,9 @@ privateKeys = {}
 # write_dict_to_file(privateKeys, 'PKeys.txt')
 # print(pem_private_key_alice.decode('utf-8'))
 
-loaded_file_path = None
-
-def store_file_path(path):
-    global loaded_file_path
-    loaded_file_path = path
-
+def process_dictionary(my_dict):
+    global privateKeys
+    privateKeys = my_dict
 
 
 def load_private_keys(file_path):
@@ -66,15 +64,13 @@ def load_private_keys(file_path):
 
     return private_keys
 
-# privateKeys = load_private_keys('PKeys.txt')
-# print(privateKeys)
+privateKeys = load_private_keys('PKeys.txt')
+print(privateKeys)
+
 
 def sign_RSA(plain_text, person):
-    print("Plain text: Sign RSA ", plain_text)
-    print("Person: sign RSA ", person)
     private_key = privateKeys.get(person)
-    print("Private key: Sign RSA ", private_key)
-
+    # print("Key", private_key)
     # Sign the message
     signature = private_key.sign(
         plain_text.encode('utf-8'),
@@ -84,7 +80,7 @@ def sign_RSA(plain_text, person):
         ),
         hashes.SHA256()
     )
-    print("Signature: Sign RSA ", signature)
+    # print("Signature", signature)
 
     # Write signature to file
     write_to_file(f"{person}_signed_text.txt", binascii.hexlify(signature))
@@ -151,3 +147,19 @@ def verify_RSA(signature, message, person):
     except Exception:
         write_to_file(f"{person}_verified_text.txt", f"Verification failed.")
 
+
+if __name__ == "__main__":
+    # Message to be sent
+    message = "The quick brown fox jumps over the lazy dog"
+
+    # Alice signs the message
+    sign_RSA(message, "Alice")
+
+    # # Bob verifies the message
+    # verify_RSA("Alice", message, "Bob")
+    #
+    # # Bob encrypts the message
+    # encrypt_RSA(message, "Bob")
+    #
+    # # Alice decrypts the message
+    # decrypt_RSA("Bob", "Alice")

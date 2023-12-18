@@ -68,7 +68,7 @@
          <widget class="QWidget" name="Input_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLabel" name="Input">
+            <widget class="QLabel" name="InputLabel">
              <property name="maximumSize">
               <size>
                <width>247</width>
@@ -81,7 +81,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit1">
+            <widget class="QTextEdit" name="Input_X">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -94,14 +94,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="KeyAESLabel">
              <property name="text">
               <string>AES Key:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_7">
+            <widget class="QTextEdit" name="AES_Key_In_X">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="invs1">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -139,7 +139,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_14">
+            <widget class="QPushButton" name="invs2">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -157,21 +157,21 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_10">
+            <widget class="QPushButton" name="Sign_Alice_RSA_X">
              <property name="text">
               <string>Sign with Alice</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_12">
+            <widget class="QPushButton" name="ECB_AES_E_X">
              <property name="text">
               <string>ECB AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="invs3">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -189,14 +189,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_21">
+            <widget class="QPushButton" name="ECB_AES_D_X">
              <property name="text">
               <string>ECB AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_24">
+            <widget class="QPushButton" name="invs4">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -214,14 +214,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_19">
+            <widget class="QPushButton" name="Verify_Alice_X">
              <property name="text">
               <string>Verify With Alice</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_11">
+            <widget class="QPushButton" name="invs5">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -245,14 +245,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Buttons_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <widget class="QPushButton" name="LOAD_MSG">
+            <widget class="QPushButton" name="LOAD_MSG_X">
              <property name="text">
               <string>Load Message</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="Load_RSA_Key_E_X">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -265,7 +265,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="SignLabel">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -309,7 +309,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="AES_E_Label">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -353,14 +353,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="Send_Cypher_X">
              <property name="text">
               <string>Send Cypher</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="AES_D_Label">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -404,7 +404,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_23">
+            <widget class="QPushButton" name="Load_RSA_Key_D_X">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -417,7 +417,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="VerfLabel">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -461,7 +461,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Clear_Certificate">
+            <widget class="QPushButton" name="Clear_All_X">
              <property name="cursor">
               <cursorShape>ArrowCursor</cursorShape>
              </property>
@@ -486,7 +486,7 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
-            <widget class="QPushButton" name="pushButton_13">
+            <widget class="QPushButton" name="invs6">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -504,7 +504,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_18">
+            <widget class="QPushButton" name="invs7">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -522,21 +522,21 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_15">
+            <widget class="QPushButton" name="Sign_Bob_RSA_X">
              <property name="text">
               <string>Sign with Bob</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_17">
+            <widget class="QPushButton" name="CBC_AES_E_X">
              <property name="text">
               <string>CBC AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_16">
+            <widget class="QPushButton" name="invs8">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -554,14 +554,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_22">
+            <widget class="QPushButton" name="CBC_AES_D_X">
              <property name="text">
               <string>CBC AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_25">
+            <widget class="QPushButton" name="invs_9">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -579,14 +579,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_20">
+            <widget class="QPushButton" name="Verfy_Bob_X">
              <property name="text">
               <string>Verify with Bob</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="invs10">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -610,14 +610,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Output_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLabel" name="Output">
+            <widget class="QLabel" name="OutputLabel">
              <property name="text">
               <string>Output :</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_6">
+            <widget class="QTextEdit" name="Output_X">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -641,7 +641,7 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Input_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLabel" name="Input">
+            <widget class="QLabel" name="InputLabel_AES">
              <property name="maximumSize">
               <size>
                <width>247</width>
@@ -654,7 +654,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit2">
+            <widget class="QTextEdit" name="InputMsg_AES">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -665,14 +665,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="KeyLabel_AES">
              <property name="text">
               <string>Key:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit">
+            <widget class="QTextEdit" name="InKeyAES_AES">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -692,7 +692,7 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_12">
            <item>
-            <widget class="QPushButton" name="pushButton_31">
+            <widget class="QPushButton" name="invs14">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -707,14 +707,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_32">
+            <widget class="QPushButton" name="ECB_E_AES_AES">
              <property name="text">
               <string>ECB AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_33">
+            <widget class="QPushButton" name="invs15">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -729,14 +729,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_34">
+            <widget class="QPushButton" name="ECB_D_AES_AES">
              <property name="text">
               <string>ECB AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_35">
+            <widget class="QPushButton" name="invs16">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -757,14 +757,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Buttons_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QPushButton" name="Load_File_AES">
+            <widget class="QPushButton" name="Load_Msg_AES">
              <property name="text">
               <string>Load Message</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="AES_E_AES">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -808,14 +808,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_36">
+            <widget class="QPushButton" name="Send_Cypher_AES">
              <property name="text">
               <string>Send Cypher</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_8">
+            <widget class="QLabel" name="AES_D_AES">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -859,7 +859,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Clear_AES">
+            <widget class="QPushButton" name="Clear_All_AES">
              <property name="text">
               <string>Clear</string>
              </property>
@@ -875,7 +875,7 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
-            <widget class="QPushButton" name="pushButton_27">
+            <widget class="QPushButton" name="invs11">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -890,14 +890,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_29">
+            <widget class="QPushButton" name="CBC_E_AES_AES">
              <property name="text">
               <string>CBC AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_28">
+            <widget class="QPushButton" name="invs13">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -912,14 +912,14 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_30">
+            <widget class="QPushButton" name="CBC_D_AES_AES">
              <property name="text">
               <string>CBC AES</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_26">
+            <widget class="QPushButton" name="invs12">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     color: rgba(0, 0, 0, 0);
@@ -940,14 +940,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Output_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLabel" name="Output">
+            <widget class="QLabel" name="OutputLabel_AES">
              <property name="text">
               <string>Output :</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_2">
+            <widget class="QTextEdit" name="Output_AES">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -971,7 +971,7 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Input_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLabel" name="Input">
+            <widget class="QLabel" name="InputLabel_RSA_E">
              <property name="maximumSize">
               <size>
                <width>247</width>
@@ -984,7 +984,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit3">
+            <widget class="QTextEdit" name="Input_RSA_MSG">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1001,14 +1001,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Buttons_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <widget class="QPushButton" name="Encrypt_RSA">
+            <widget class="QPushButton" name="RSA_Alice_Enc">
              <property name="text">
               <string>Encrypt with Alice</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Decrypt_RSA">
+            <widget class="QPushButton" name="RSA_Alice_Dec">
              <property name="text">
               <string>Decrypt with Alice</string>
              </property>
@@ -1031,7 +1031,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer">
+            <spacer name="VS1">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1047,14 +1047,14 @@ p, li { white-space: pre-wrap; }
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="Send_RSA">
+            <widget class="QPushButton" name="Send_RSA_Cypher">
              <property name="text">
               <string>Send Cypher</string>
              </property>
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer_2">
+            <spacer name="VS2">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1070,7 +1070,7 @@ p, li { white-space: pre-wrap; }
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="Clear_RSA">
+            <widget class="QPushButton" name="Clear_All_RSA">
              <property name="text">
               <string>Clear</string>
              </property>
@@ -1086,14 +1086,14 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QPushButton" name="RSA_Bob_Enc">
              <property name="text">
               <string>Encrypt with Bob</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="RSA_Bob_Dec">
              <property name="text">
               <string>Decrypt with Bob</string>
              </property>
@@ -1137,7 +1137,7 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Input_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLabel" name="Input">
+            <widget class="QLabel" name="InputLabel_Authen">
              <property name="maximumSize">
               <size>
                <width>247</width>
@@ -1150,7 +1150,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit4">
+            <widget class="QTextEdit" name="Input_RSA_Authen_msg">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1167,49 +1167,49 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Buttons_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QPushButton" name="Load_File_Certificate">
+            <widget class="QPushButton" name="Load_MSG_Authen">
              <property name="text">
               <string>Load File</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_9">
+            <widget class="QPushButton" name="Load_RSA_Authen_Key_sign">
              <property name="text">
               <string>Load RSA key</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="SignRSA">
+            <widget class="QPushButton" name="Sign_RSA_Authen">
              <property name="text">
               <string>Sign</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Export_File_Certificate">
+            <widget class="QPushButton" name="Send_cypher_Authen">
              <property name="text">
               <string>Send Cypher</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="Load_RSA_Authen_Key_Verif">
              <property name="text">
               <string>Load RSA Key</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="VerifyRSA">
+            <widget class="QPushButton" name="Verify_RSA_Authen">
              <property name="text">
               <string>Verify</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Clear_Certificate">
+            <widget class="QPushButton" name="Clear_All_Authen">
              <property name="text">
               <string>Clear</string>
              </property>
@@ -1222,14 +1222,14 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Output_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLabel" name="Output">
+            <widget class="QLabel" name="OutputLabel_Authen">
              <property name="text">
               <string>Output :</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_4">
+            <widget class="QTextEdit" name="Output_RSA_Authen">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1253,7 +1253,7 @@ p, li { white-space: pre-wrap; }
          <widget class="QWidget" name="Input_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLabel" name="Input">
+            <widget class="QLabel" name="InputLabel_Sha">
              <property name="maximumSize">
               <size>
                <width>247</width>
@@ -1266,7 +1266,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit5">
+            <widget class="QTextEdit" name="InputMSG_Sha">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1290,7 +1290,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="CalcSHA">
+            <widget class="QPushButton" name="Calc_SHA">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -1300,7 +1300,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="Clear_SHA">
+            <widget class="QPushButton" name="Clear_All_SHA">
              <property name="text">
               <string>Clear</string>
              </property>
@@ -1310,20 +1310,17 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QWidget" name="widget_2" native="true"/>
-        </item>
-        <item>
          <widget class="QWidget" name="Output_Widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLabel" name="Output">
+            <widget class="QLabel" name="OutputLabel_Sha">
              <property name="text">
               <string>Output :</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_5">
+            <widget class="QTextEdit" name="Output_Sha">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;

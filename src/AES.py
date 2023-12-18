@@ -1,8 +1,7 @@
-from OpenSSL import crypto
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import secrets
 import binascii
+
 
 ##########ECB mode##########
 def encrypt_file_ECB(input_file, output_file, key):
@@ -25,6 +24,7 @@ def decrypt_file_ECB(input_file, output_file, key):
     with open(output_file, 'wb') as file_out:
         file_out.write(decrypted_data)
 
+
 ##########CBC mode##########
 def encrypt_file_CBC(input_file, output_file, key, iv):
     cipher = AES.new(key, AES.MODE_CBC, iv)
@@ -35,6 +35,7 @@ def encrypt_file_CBC(input_file, output_file, key, iv):
     encrypted_data = cipher.encrypt(data)
     with open(output_file, 'wb') as file_out:
         file_out.write(binascii.hexlify(iv + encrypted_data))
+
 
 def decrypt_file_CBC(input_file, output_file, key):
     with open(input_file, 'rb') as file_in:
@@ -58,4 +59,3 @@ iv = b'abcdefghijklmnop'
 
 encrypt_file_CBC(input_file, encrypted_file, key, iv)
 decrypt_file_CBC(encrypted_file, decrypted_file, key)
-
