@@ -109,7 +109,6 @@ class MyGUI(QMainWindow, Ui_MainWindow):
 
     # Load RSA Private Key button action listener
 
-
     # def load_file_and_process(self):
     #     options = QFileDialog.Options()
     #     file_name, _ = QFileDialog.getOpenFileName(
@@ -173,7 +172,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
     def load_rsa_key(self):
         file_path = self.choose_file()
         print("Loading RSA Key from:", file_path)
-        store_file_path(file_path)
+        load_private_keys(file_path)
         # self.Output_X.toPlainText(file_path)
         # load_private_keys(file_path)
 
@@ -181,7 +180,6 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         person = "Alice"
         print(MyGUI.MSG_Contents)
         plain_text = MyGUI.MSG_Contents
-
         sign_RSA(plain_text, person)
 
         print("Signing with Alice...")
