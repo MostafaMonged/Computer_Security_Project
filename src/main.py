@@ -164,10 +164,38 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         print("Output changed:", self.Output_X.toPlainText())
 
     def verify_with_alice(self):
-        print("Verifying with Alice...")
+        try:
+            # Retrieve the message and signature
+            message = self.Input_X.toPlainText()
+            signature_file = 'Alice_signed_text.txt'
+
+            # Load the signature from the file
+            with open(signature_file, 'rb') as file:
+                signature = file.read()
+
+            # Verify the signature
+            verify_RSA(signature, message, 'Alice')
+            self.Output_X.setPlainText("Alice's signature verification complete.")
+        except Exception as e:
+            print(f"Error in verifying with Alice: {e}")
+            self.Output_X.setPlainText(f"Error in verifying with Alice: {e}")
 
     def verify_with_bob(self):
-        print("Verifying with Bob...")
+        try:
+            # Retrieve the message and signature
+            message = self.Input_X.toPlainText()
+            signature_file = 'Bob_signed_text.txt'
+
+            # Load the signature from the file
+            with open(signature_file, 'rb') as file:
+                signature = file.read()
+
+            # Verify the signature
+            verify_RSA(signature, message, 'Bob')
+            self.Output_X.setPlainText("Bob's signature verification complete.")
+        except Exception as e:
+            print(f"Error in verifying with Bob: {e}")
+            self.Output_X.setPlainText(f"Error in verifying with Bob: {e}")
 
     def load_rsa_key(self):
         file_path = self.choose_file()
