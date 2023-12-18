@@ -34,18 +34,11 @@ pem_private_key_bob = bob_private_key.private_bytes(
 # Store the PEM private key in a dictionary
 privateKeys = {"Alice": pem_private_key_alice.decode('utf-8'), "Bob": pem_private_key_bob.decode('utf-8')}
 
-loaded_file_path = None
-
 
 def write_to_file(filename, data):
     mode = 'wb' if isinstance(data, bytes) else 'w'
     with open(filename, mode) as file:
         file.write(data)
-
-
-def store_file_path(path):
-    global loaded_file_path
-    loaded_file_path = path
 
 
 def load_private_keys(file_path):
