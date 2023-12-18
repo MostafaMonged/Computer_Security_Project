@@ -205,15 +205,20 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         # load_private_keys(file_path)
 
     def sign_with_alice(self):
+        print("Signing with Alice...")
         person = "Alice"
         print(MyGUI.MSG_Contents)
         plain_text = MyGUI.MSG_Contents
         sign_RSA(plain_text, person)
-
-        print("Signing with Alice...")
+        print("Signed with Alice...")
 
     def sign_with_bob(self):
         print("Signing with Bob...")
+        person = "Bob"
+        print(MyGUI.MSG_Contents)
+        plain_text = MyGUI.MSG_Contents
+        sign_RSA(plain_text, person)
+        print("Signed with Bob...")
 
     def update_output(self, new_content):
         # Clear existing content and set new content
