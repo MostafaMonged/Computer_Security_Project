@@ -25,10 +25,6 @@ pem_private_key_alice = alice_private_key.private_bytes(
     format=serialization.PrivateFormat.TraditionalOpenSSL,
     encryption_algorithm=serialization.NoEncryption()
 )
-def write_dict_to_file(dictionary, file_name):
-    with open(file_name, 'w', encoding='utf-8') as file:
-        json.dump(dictionary, file, indent=2)
-    print('Dictionary saved successfully to file:', file_name)
 
 pem_private_key_bob = bob_private_key.private_bytes(
     encoding=serialization.Encoding.PEM,
@@ -37,19 +33,23 @@ pem_private_key_bob = bob_private_key.private_bytes(
 )
 # Store the PEM private key in a dictionary
 privateKeys = {"Alice": pem_private_key_alice.decode('utf-8'), "Bob": pem_private_key_bob.decode('utf-8')}
-privateKeys = {}
-# write_dict_to_file(privateKeys, 'PKeys.txt')
-# print(pem_private_key_alice.decode('utf-8'))
 
 loaded_file_path = None
+
+
+def write_to_file(filename, data):
+    mode = 'wb' if isinstance(data, bytes) else 'w'
+    with open(filename, mode) as file:
+        file.write(data)
+
 
 def store_file_path(path):
     global loaded_file_path
     loaded_file_path = path
 
 
-
 def load_private_keys(file_path):
+    global privateKeys
     with open(file_path, 'r', encoding='utf-8') as file:
         private_keys_data = json.load(file)
 
@@ -64,10 +64,42 @@ def load_private_keys(file_path):
         )
         private_keys[key_name] = private_key
 
-    return private_keys
+    privateKeys = private_keys
 
-# privateKeys = load_private_keys('PKeys.txt')
-# print(privateKeys)
+
+def encrypt_RSA(plain_text, person):
+    public_key = privateKeys[person].public_key()
+
+    # Encrypt the message
+    cipher_text = public_key.encrypt(
+        plain_text.encode('utf-8'),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+
+    # Write cipher text to file
+    write_to_file(f"{person}_encrypted_text.txt", binascii.hexlify(cipher_text))
+
+
+def decrypt_RSA(cipher_text, person):
+    private_key = privateKeys.get(person)
+
+    # Decrypt the message
+    plain_text = private_key.decrypt(
+        binascii.unhexlify(cipher_text),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+
+    # Write decrypted text to file
+    write_to_file(f"{person}_decrypted_text.txt", plain_text)
+
 
 def sign_RSA(plain_text, person):
     print("Plain text: Sign RSA ", plain_text)
@@ -90,46 +122,6 @@ def sign_RSA(plain_text, person):
     write_to_file(f"{person}_signed_text.txt", binascii.hexlify(signature))
 
 
-def encrypt_RSA(plain_text, person):
-    public_key = privateKeys[person].public_key()
-
-    # Encrypt the message
-    cipher_text = public_key.encrypt(
-        plain_text.encode('utf-8'),
-        padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
-        )
-    )
-
-    # Write cipher text to file
-    write_to_file(f"{person}_encrypted_text.txt", binascii.hexlify(cipher_text))
-
-
-def write_to_file(filename, data):
-    mode = 'wb' if isinstance(data, bytes) else 'w'
-    with open(filename, mode) as file:
-        file.write(data)
-
-
-def decrypt_RSA(cipher_text, person):
-    private_key = privateKeys.get(person)
-
-    # Decrypt the message
-    plain_text = private_key.decrypt(
-        binascii.unhexlify(cipher_text),
-        padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
-        )
-    )
-
-    # Write decrypted text to file
-    write_to_file(f"{person}_decrypted_text.txt", plain_text)
-
-
 def verify_RSA(signature, message, person):
     public_key = privateKeys[person].public_key()
 
@@ -150,4 +142,3 @@ def verify_RSA(signature, message, person):
 
     except Exception:
         write_to_file(f"{person}_verified_text.txt", f"Verification failed.")
-
