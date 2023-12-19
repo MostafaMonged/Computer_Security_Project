@@ -84,7 +84,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.InKeyAES_AES.textChanged.connect(self.aes_key_changed_MAIN)
         self.InputMsg_AES.textChanged.connect(self.input_message_changed_AES)
         self.Output_AES.textChanged.connect(self.output_changed_AES)
-        self.Clear_All_AES.clicked.connect(self.clear_all)
+        self.Clear_All_AES.clicked.connect(self.clear_all_AES)
 
         # ========================================================================================================================
         # Tab 3 Code
@@ -464,8 +464,8 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             self.AES_current_file_path = file_name  # Store the current file path
             try:
                 with open(file_name, "r", encoding='utf-8') as file:
-                    self.InputMsg_AES.append(file.read())
-                    self.Output_AES.append("\nLoaded Message.")
+                    self.InputMsg_AES.setPlainText(file.read())
+                    self.Output_AES.setPlainText("Loaded Message.")
             except Exception as e:
                 print(f"Error loading file: {e}")
 
@@ -482,7 +482,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.exec_()
             return
 
-        AES_ECB_key = self.AES_Key_In_X.toPlainText()
+        AES_ECB_key = self.InKeyAES_AES.toPlainText()
         if not AES_ECB_key.strip():  # Check if plain_text is empty or contains only whitespace
             # Show a message box to inform the user to enter or load a message
             msg_box = QMessageBox()
@@ -500,13 +500,13 @@ class MyGUI(QMainWindow, Ui_MainWindow):
 
         if len(AES_ECB_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
-            self.Output_X.append(error_message)  # Append the error message to the Output_X text area
+            self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
         else:
-            self.Output_X.append("\nThe input string is of correct length (32 characters).")
-            self.Output_X.append("\nPerforming ECB AES Encryption...")
+            self.Output_AES.append("\nThe input string is of correct length (32 characters).")
+            self.Output_AES.append("\nPerforming ECB AES Encryption...")
             encrypt_file_ECB(file_path, "ECB_AES_Encrypted.txt", AES_ECB_key)
-            self.Output_X.append("\nECB AES Encryption Complete.")
-            self.Output_X.append("\nEncrypted Text generated named ECB_AES_Encrypted.txt")
+            self.Output_AES.append("\nECB AES Encryption Complete.")
+            self.Output_AES.append("\nEncrypted Text generated named ECB_AES_Encrypted.txt")
             self.last_encryption_mode = "ECB"
 
     def cbc_aes_encryption_AES(self):
@@ -538,18 +538,18 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 self.Output_X.append(error_message)
         if len(AES_CBC_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
-            self.Output_X.append(error_message)  # Append the error message to the Output_X text area
+            self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
         else:
-            self.Output_X.append("\nThe input string is of correct length (32 characters).")
-            self.Output_X.append("\nPerforming CBC AES Encryption...")
+            self.Output_AES.append("\nThe input string is of correct length (32 characters).")
+            self.Output_AES.append("\nPerforming CBC AES Encryption...")
             iv = b'abcdefghijklmnop'
             encrypt_file_CBC(file_path, "CBC_AES_Encrypted.txt", AES_CBC_key, iv)
-            self.Output_X.append("\nCBC AES Encryption Complete.")
-            self.Output_X.append("\nEncrypted Text generated named CBC_AES_Encrypted.txt")
+            self.Output_AES.append("\nCBC AES Encryption Complete.")
+            self.Output_AES.append("\nEncrypted Text generated named CBC_AES_Encrypted.txt")
             self.last_encryption_mode = "CBC"
 
     def ecb_aes_decryption_AES(self):
-        AES_ECB_key = self.AES_Key_In_X.toPlainText()
+        AES_ECB_key = self.InKeyAES_AES.toPlainText()
         if not AES_ECB_key.strip():  # Check if plain_text is empty or contains only whitespace
             # Show a message box to inform the user to enter or load a message
             msg_box = QMessageBox()
@@ -566,7 +566,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 self.Output_X.append(error_message)
         if len(AES_ECB_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
-            self.Output_X.append(error_message)  # Append the error message to the Output_X text area
+            self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
         else:
             file_path = self.AES_current_file_path
             if not os.path.exists(file_path):
@@ -579,14 +579,14 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.exec_()
                 return  # Exit the function
             try:
-                self.Output_X.append("\nThe input string is of correct length (32 characters).")
-                self.Output_X.append("\nPerforming ECB AES Decryption...")
+                self.Output_AES.append("\nThe input string is of correct length (32 characters).")
+                self.Output_AES.append("\nPerforming ECB AES Decryption...")
                 decrypt_file_ECB(file_path, "ECB_AES_Decrypted.txt", AES_ECB_key)
-                self.Output_X.append("\nECB AES Decryption Complete.")
-                self.Output_X.append("\nEncrypted Text generated named ECB_AES_Decrypted.txt")
+                self.Output_AES.append("\nECB AES Decryption Complete.")
+                self.Output_AES.append("\nEncrypted Text generated named ECB_AES_Decrypted.txt")
             except Exception as e:
                 error_message = f"Error during ECB AES Decryption: {str(e)}"
-                self.Output_X.append(error_message)
+                self.Output_AES.append(error_message)
 
     def cbc_aes_decryption_AES(self):
         if self.last_encryption_mode != "CBC":
@@ -598,7 +598,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return
-        cbc_aes_key = self.AES_Key_In_X.toPlainText()
+        cbc_aes_key = self.InKeyAES_AES.toPlainText()
         if not cbc_aes_key.strip():  # Check if plain_text is empty or contains only whitespace
             # Show a message box to inform the user to enter or load a message
             msg_box = QMessageBox()
@@ -611,10 +611,10 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         for i in cbc_aes_key:
             if i not in "0123456789ABCDEFabcdef":
                 error_message = "Error: The input string must be a hexadecimal string."
-                self.Output_X.append(error_message)
+                self.Output_AES.append(error_message)
         if len(cbc_aes_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
-            self.Output_X.append(error_message)  # Append the error message to the Output_X text area
+            self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
         else:
             file_path = "CBC_AES_Encrypted.txt"
             if not os.path.exists(file_path):
@@ -626,11 +626,11 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
                 msg_box.exec_()
                 return  # Exit the function
-            self.Output_X.append("\nThe input string is of correct length (32 characters).")
-            self.Output_X.append("\nPerforming CBC AES Decryption...")
+            self.Output_AES.append("\nThe input string is of correct length (32 characters).")
+            self.Output_AES.append("\nPerforming CBC AES Decryption...")
             decrypt_file_CBC(file_path, "CBC_AES_Decrypted.txt", cbc_aes_key)
-            self.Output_X.append("\nCBC AES Decryption Complete.")
-            self.Output_X.append("\nEncrypted Text generated named CBC_AES_Decrypted.txt")
+            self.Output_AES.append("\nCBC AES Decryption Complete.")
+            self.Output_AES.append("\nEncrypted Text generated named CBC_AES_Decrypted.txt")
 
     def input_message_changed_AES(self):
         if not self.AES_current_file_path:  # If no file is loaded
@@ -639,11 +639,19 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             # Save the current text to the file
         try:
             with open(self.AES_current_file_path, "w", encoding='utf-8') as file:
-                file.write(self.Input_X.toPlainText())
+                file.write(self.InputMsg_AES.toPlainText())
         except Exception as e:
             print(f"Error updating file: {e}")
+
     def output_changed_AES(self):
         print("Output changed:", self.Output_X.toPlainText())
+
+    def clear_all_AES(self):
+        # Clearing the text editors
+        self.AES_current_file_path = None
+        #self.InputMsg_AES.setPlainText("")  # Assuming 'Input_X' is an input text editor
+        self.Output_AES.setPlainText("")  # Clearing the output text editor
+        self.InKeyAES_AES.setPlainText("")  # Clear the AES key text editor, if applicable
 
 
 class OverlayWidget(QWidget):
