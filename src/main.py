@@ -497,10 +497,12 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             if i not in "0123456789ABCDEFabcdef":
                 error_message = "Error: The input string must be a hexadecimal string."
                 self.Output_X.append(error_message)
+                return
 
         if len(AES_ECB_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
             self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
+            return
         else:
             self.Output_AES.append("\nThe input string is of correct length (32 characters).")
             self.Output_AES.append("\nPerforming ECB AES Encryption...")
@@ -536,9 +538,12 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             if i not in "0123456789ABCDEFabcdef":
                 error_message = "Error: The input string must be a hexadecimal string."
                 self.Output_X.append(error_message)
+                return
+
         if len(AES_CBC_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
             self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
+            return
         else:
             self.Output_AES.append("\nThe input string is of correct length (32 characters).")
             self.Output_AES.append("\nPerforming CBC AES Encryption...")
@@ -564,9 +569,11 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             if i not in "0123456789ABCDEFabcdef":
                 error_message = "Error: The input string must be a hexadecimal string."
                 self.Output_X.append(error_message)
+                return
         if len(AES_ECB_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
             self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
+            return
         else:
             file_path = self.AES_current_file_path
             if not os.path.exists(file_path):
@@ -612,9 +619,11 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             if i not in "0123456789ABCDEFabcdef":
                 error_message = "Error: The input string must be a hexadecimal string."
                 self.Output_AES.append(error_message)
+                return
         if len(cbc_aes_key) != 32:
             error_message = "Error: The input string must be exactly 32 characters long."
             self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
+            return
         else:
             file_path = "CBC_AES_Encrypted.txt"
             if not os.path.exists(file_path):
