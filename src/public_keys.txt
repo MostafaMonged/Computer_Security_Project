@@ -1,2 +1,0 @@
-Alice: <cryptography.hazmat.backends.openssl.rsa._RSAPublicKey object at 0x000001C3B20F7A50>
-Bob: <cryptography.hazmat.backends.openssl.rsa._RSAPublicKey object at 0x000001C3B20F6310>

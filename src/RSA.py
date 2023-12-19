@@ -6,33 +6,58 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+
+# # Generate RSA key pairs for Alice and Bob
+# alice_private_key = rsa.generate_private_key(
+#     public_exponent=65537,
+#     key_size=2048,
+#     backend=default_backend()
+# )
+#
+# bob_private_key = rsa.generate_private_key(
+#     public_exponent=65537,
+#     key_size=2048,
+#     backend=default_backend()
+# )
+#
+# # Convert private key to PEM format
+# pem_private_key_alice = alice_private_key.private_bytes(
+#     encoding=serialization.Encoding.PEM,
+#     format=serialization.PrivateFormat.TraditionalOpenSSL,
+#     encryption_algorithm=serialization.NoEncryption()
+# )
+#
+# pem_private_key_bob = bob_private_key.private_bytes(
+#     encoding=serialization.Encoding.PEM,
+#     format=serialization.PrivateFormat.TraditionalOpenSSL,
+#     encryption_algorithm=serialization.NoEncryption()
+# )
+# # Store the PEM private key in a dictionary
+# privateKeys = {"Alice": pem_private_key_alice.decode('utf-8'), "Bob": pem_private_key_bob.decode('utf-8')}
+# Function to generate RSA key pair and convert to PEM format
+def generate_rsa_key_pair():
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048,
+        backend=default_backend()
+    )
+    pem_private_key = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.TraditionalOpenSSL,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+    return pem_private_key, private_key
+
+
 # Generate RSA key pairs for Alice and Bob
-alice_private_key = rsa.generate_private_key(
-    public_exponent=65537,
-    key_size=2048,
-    backend=default_backend()
-)
+pem_private_key_alice, alice_private_key = generate_rsa_key_pair()
+pem_private_key_bob, bob_private_key = generate_rsa_key_pair()
 
-bob_private_key = rsa.generate_private_key(
-    public_exponent=65537,
-    key_size=2048,
-    backend=default_backend()
-)
-
-# Convert private key to PEM format
-pem_private_key_alice = alice_private_key.private_bytes(
-    encoding=serialization.Encoding.PEM,
-    format=serialization.PrivateFormat.TraditionalOpenSSL,
-    encryption_algorithm=serialization.NoEncryption()
-)
-
-pem_private_key_bob = bob_private_key.private_bytes(
-    encoding=serialization.Encoding.PEM,
-    format=serialization.PrivateFormat.TraditionalOpenSSL,
-    encryption_algorithm=serialization.NoEncryption()
-)
-# Store the PEM private key in a dictionary
-privateKeys = {"Alice": pem_private_key_alice.decode('utf-8'), "Bob": pem_private_key_bob.decode('utf-8')}
+# Store the deserialized PEM private key in a dictionary
+privateKeys = {
+    "Alice": alice_private_key,
+    "Bob": bob_private_key
+}
 
 
 def write_to_file(filename, data):
@@ -95,11 +120,8 @@ def decrypt_RSA(cipher_text, person):
 
 
 def sign_RSA(plain_text, person):
-    print("Plain text: Sign RSA ", plain_text)
-    print("Person: sign RSA ", person)
-    private_key = privateKeys.get(person)
-    print("Private key: Sign RSA ", private_key)
 
+    private_key = privateKeys.get(person)
     # Sign the message
     signature = private_key.sign(
         plain_text.encode('utf-8'),
