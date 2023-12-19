@@ -575,7 +575,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             self.Output_AES.append(error_message)  # Append the error message to the Output_X text area
             return
         else:
-            file_path = self.AES_current_file_path
+            file_path = "ECB_AES_Encrypted.txt"
             if not os.path.exists(file_path):
                 # Show a message box to inform the user that the file is not found
                 msg_box = QMessageBox()
