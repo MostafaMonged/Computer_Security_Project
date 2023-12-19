@@ -88,6 +88,12 @@ class MyGUI(QMainWindow, Ui_MainWindow):
 
         # ========================================================================================================================
         # Tab 3 Code
+        self.LOAD_MSG_X.clicked.connect(self.load_msg_MAIN)
+        self.Sign_Alice_RSA_X.clicked.connect(self.sign_with_alice_MAIN)
+        self.Sign_Bob_RSA_X.clicked.connect(self.sign_with_bob_MAIN)
+        self.Verify_Alice_X.clicked.connect(self.verify_with_alice)
+        self.Verfy_Bob_X.clicked.connect(self.verify_with_bob)
+        self.Clear_All_AES.clicked.connect(self.clear_all)
 
     def load_msg_MAIN(self):
 
