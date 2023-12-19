@@ -88,12 +88,27 @@ class MyGUI(QMainWindow, Ui_MainWindow):
 
         # ========================================================================================================================
         # Tab 3 Code
-        self.LOAD_MSG_X.clicked.connect(self.load_msg_MAIN)
-        self.Sign_Alice_RSA_X.clicked.connect(self.sign_with_alice_MAIN)
-        self.Sign_Bob_RSA_X.clicked.connect(self.sign_with_bob_MAIN)
-        self.Verify_Alice_X.clicked.connect(self.verify_with_alice)
-        self.Verfy_Bob_X.clicked.connect(self.verify_with_bob)
-        self.Clear_All_AES.clicked.connect(self.clear_all)
+        self.Load_File_RSA.clicked.connect(self.load_msg_RSA)
+        self.RSA_Alice_Enc.clicked.connect(self.Encrypt_Alice_RSA)
+        self.RSA_Bob_Enc.clicked.connect(self.Encrypt_Bob_RSA)
+        self.RSA_Alice_Dec.clicked.connect(self.Decrypt_ALice_RSA)
+        self.RSA_Bob_Dec.clicked.connect(self.Decrypt_Bob_RSA)
+        self.Clear_All_RSA.clicked.connect(self.clear_all_RSA)
+        # ========================================================================================================================
+        # Tab 4 Code
+        self.Load_MSG_Authen.clicked.connect(self.load_msg_AUTH)
+        self.Load_RSA_Authen_Key_sign.clicked.connect(self.load_rsa_key_AUTH)
+        self.Sign_RSA_Authen.clicked.connect(self.sign_with_alice_AUTH)
+
+        self.Load_RSA_Authen_Key_Verif.clicked.connect(self.load_rsa_key_AUTH)
+        self.Verify_RSA_Authen.clicked.connect(self.verify_with_alice_AUTH)
+        self.Clear_All_Authen.clicked.connect(self.clear_all_AUTH)
+        # ========================================================================================================================
+        # Tab 5 Code
+        # self.Load_File_SHA.clicked.connect(self.load_msg_SHA)
+        # self.Calc_SHA.clicked.connect(self.SHA_512_SHA)
+        # self.Clear_All_SHA.clicked.connect(self.clear_all_SHA)
+
 
     def load_msg_MAIN(self):
 
@@ -658,10 +673,205 @@ class MyGUI(QMainWindow, Ui_MainWindow):
     def clear_all_AES(self):
         # Clearing the text editors
         self.AES_current_file_path = None
-        #self.InputMsg_AES.setPlainText("")  # Assuming 'Input_X' is an input text editor
+        # self.InputMsg_AES.setPlainText("")  # Assuming 'Input_X' is an input text editor
         self.Output_AES.setPlainText("")  # Clearing the output text editor
         self.InKeyAES_AES.setPlainText("")  # Clear the AES key text editor, if applicable
 
+    #     ===============================================================================================================
+    # RSA TAB CODE
+    # ===================================================================================================================
+    # RSA Tab Code
+    def load_msg_RSA(self):
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(
+            self, "Open File", "", "Text Files (*.txt);;All Files (*)", options=options
+        )
+
+        if file_name:
+            try:
+                with open(file_name, "r", encoding='utf-8') as file:
+                    self.Input_RSA_MSG.append(file.read())
+                    self.RSA_Output.append("\nLoaded Message.")
+            except Exception as e:
+                print(f"Error loading file: {e}")
+
+    def Encrypt_Alice_RSA(self):
+        person = "Alice"
+        plain_text = self.Input_RSA_MSG.toPlainText()
+        if not plain_text.strip():  # Check if plain_text is empty or contains only whitespace
+            # Show a message box to inform the user to enter or load a message
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Message Required")
+            msg_box.setText("Please write a message before Encrypting.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.exec_()
+            return  # Exit the function if plain_text is empty
+        self.RSA_Output.append("\nEncrypting with Alice...")
+        encrypt_RSA(plain_text, person)
+        self.RSA_Output.append("\nEncrypted with Alice.")
+        self.RSA_Output.append("\nEncrypted Text generated named Alice_encrypted_text.txt")
+
+    def Decrypt_ALice_RSA(self):
+        person = "Alice"
+        # Read the encrypted message from the file
+        file_path = "Alice_encrypted_text.txt"
+        try:
+            with open(file_path, 'r') as file:
+                message = file.read()
+        except FileNotFoundError:
+            # Show an error message if the file is not found
+            self.show_error_message("File Not Found",
+                                    f"The required file '{file_path}' was not found in the current directory.")
+            return
+        if not message.strip():  # Check if plain_text is empty or contains only whitespace
+            # Show a message box to inform the user to enter or load a message
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Message Required")
+            msg_box.setText("Please write a message before Encrypting.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.exec_()
+            return  # Exit the function if plain_text is empty
+        self.RSA_Output.append("\nDecrypting with Alice...")
+        decrypt_RSA(message, person)
+        self.RSA_Output.append("\nDecrypted with Alice.")
+        self.RSA_Output.append("\nDecrypted Text generated named Alice_decrypted_text.txt")
+
+    def Encrypt_Bob_RSA(self):
+        person = "Bob"
+        plain_text = self.Input_RSA_MSG.toPlainText()
+        if not plain_text.strip():  # Check if plain_text is empty or contains only whitespace
+            # Show a message box to inform the user to enter or load a message
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Message Required")
+            msg_box.setText("Please write a message before Encrypting.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.exec_()
+            return  # Exit the function if plain_text is empty
+        self.RSA_Output.append("\nEncrypting with Bob...")
+        encrypt_RSA(plain_text, person)
+        self.RSA_Output.append("\nEncrypted with Bob.")
+        self.RSA_Output.append("\nEncrypted Text generated named Bob_encrypted_text.txt")
+
+    def Decrypt_Bob_RSA(self):
+        person = "Bob"
+        # Read the encrypted message from the file
+        file_path = "Bob_encrypted_text.txt"
+        try:
+            with open(file_path, 'r') as file:
+                message = file.read()
+        except FileNotFoundError:
+            # Show an error message if the file is not found
+            self.show_error_message("File Not Found",
+                                    f"The required file '{file_path}' was not found in the current directory.")
+            return
+        if not message.strip():  # Check if plain_text is empty or contains only whitespace
+            # Show a message box to inform the user to enter or load a message
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Message Required")
+            msg_box.setText("Please write a message before Encrypting.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.exec_()
+            return  # Exit the function if plain_text is empty
+        self.RSA_Output.append("\nDecrypting with Bob...")
+        decrypt_RSA(message, person)
+        self.RSA_Output.append("\nDecrypted with Bob.")
+        self.RSA_Output.append("\nDecrypted Text generated named Bob_decrypted_text.txt")
+
+    def clear_all_RSA(self):
+        # Clearing the text editors
+        self.Input_RSA_MSG.setPlainText("")  # Assuming 'Input_X' is an input text editor
+        self.RSA_Output.setPlainText("")  # Clearing the output text editor
+    # ========================================================================================================================
+    def load_msg_AUTH(self):
+
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(
+            self, "Open File", "", "Text Files (*.txt);;All Files (*)", options=options
+        )
+
+        if file_name:
+            try:
+                with open(file_name, "r", encoding='utf-8') as file:
+                    self.Input_RSA_Authen_msg.append(file.read())
+                    self.Output_X.Output_RSA_Authen("\nLoaded Message.")
+            except Exception as e:
+                print(f"Error loading file: {e}")
+
+    def load_rsa_key_AUTH(self):
+        # Check if any specified sentence is in Input_X
+        self.Output_RSA_Authen.append("\nLoading RSA Key...")
+        file_path = self.choose_file()
+        # Check if a valid file path was selected
+        if not file_path:
+            self.Output_RSA_Authen.append("\nRSA key loading canceled.")
+            return
+        load_private_keys(file_path)
+        try:
+            with open('PKeys.txt', 'r'):
+                self.Output_RSA_Authen.append("\nRSA Key Loaded.")
+        except FileNotFoundError:
+            self.Output_RSA_Authen.append("\nError: 'PKeys.txt' not found.")
+
+    def sign_with_alice_AUTH(self):
+        person = "Alice"
+        plain_text = self.Input_RSA_Authen_msg.toPlainText()
+        if not plain_text.strip():  # Check if plain_text is empty or contains only whitespace
+            # Show a message box to inform the user to enter or load a message
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Message Required")
+            msg_box.setText("Please write or load a message before signing.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.exec_()
+            return  # Exit the function if plain_text is empty
+        self.Output_RSA_Authen.append("\nSigning with Alice...")
+        sign_RSA(plain_text, person)
+        self.Output_RSA_Authen.append("\nSigned with Alice.")
+        self.Output_RSA_Authen.append("\nSigned Text generated named Alice_signed_text.txt")
+
+    def verify_with_alice_AUTH(self):
+        signature_file = "Alice_signed_text.txt"
+        if not os.path.exists(signature_file):
+            # Show a message box to inform the user that the signature file is not found
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Critical)
+            msg_box.setWindowTitle("File Not Found")
+            msg_box.setText(f"\nThe required signature file '{signature_file}' was not found in the current directory.")
+            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setStandardButtons(QMessageBox.Ok)
+            msg_box.exec_()
+            return
+
+        try:
+            # Retrieve the message and signature
+            message = self.Input_RSA_Authen_msg.toPlainText()
+
+            # Load the signature from the file
+            with open(signature_file, 'rb') as file:
+                signature = file.read()
+
+            # Verify the signature
+            verify_RSA(signature, message, 'Alice')
+
+            # Read the first line from Alice_verified_text.txt
+            with open('Alice_verified_text.txt', 'r') as verified_file:
+                first_line = verified_file.readline().strip()
+            self.Output_RSA_Authen.append(f"\nAlice's signature verification complete: {first_line}")
+        except Exception as e:
+            print(f"\nError in verifying with Alice: {e}")
+            self.Output_RSA_Authen.append(f"\nError in verifying with Alice: {e}")
+
+    def clear_all_AUTH(self):
+        # Clearing the text editors
+        self.Input_RSA_Authen_msg.setPlainText("")  # Assuming 'Input_X' is an input text editor
+        self.Output_RSA_Authen.setPlainText("")  # Clearing the output text editor
+
+# ==========================================================================================================================
+# Tab 5 Code
 
 class OverlayWidget(QWidget):
     def __init__(self):

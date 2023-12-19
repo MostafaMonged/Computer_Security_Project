@@ -1,1 +1,2 @@
-Verification failed.
+Verification successful.
+Message: "asdasd" is authentic.

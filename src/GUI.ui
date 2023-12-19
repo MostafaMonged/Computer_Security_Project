@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>949</width>
+    <width>927</width>
     <height>510</height>
    </rect>
   </property>
@@ -1031,7 +1031,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="RSA_Alice_Dec">
              <property name="text">
-              <string>Decrypt with Alice</string>
+              <string>Decrypt Alice</string>
              </property>
             </widget>
            </item>
@@ -1047,7 +1047,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="Load_File_RSA">
              <property name="text">
-              <string>Load File</string>
+              <string>Load MSG</string>
              </property>
             </widget>
            </item>
@@ -1124,7 +1124,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QPushButton" name="RSA_Bob_Dec">
              <property name="text">
-              <string>Decrypt with Bob</string>
+              <string>Decrypt Bob</string>
              </property>
             </widget>
            </item>
@@ -1142,7 +1142,7 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QTextEdit" name="textEdit_3">
+            <widget class="QTextEdit" name="RSA_Output">
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
