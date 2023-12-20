@@ -1317,7 +1317,7 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QWidget" name="Buttons_Widget" native="true">
+         <widget class="QWidget" name="Buttons_Widget_2" native="true">
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QPushButton" name="Load_File_SHA">
