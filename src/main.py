@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
 from PyQt5.uic import loadUiType
-
+from SHA512 import *
 from AES import *
 # Load the .ui file and generate the corresponding class dynamically
 from RSA import *
@@ -105,10 +105,9 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.Clear_All_Authen.clicked.connect(self.clear_all_AUTH)
         # ========================================================================================================================
         # Tab 5 Code
-        # self.Load_File_SHA.clicked.connect(self.load_msg_SHA)
-        # self.Calc_SHA.clicked.connect(self.SHA_512_SHA)
-        # self.Clear_All_SHA.clicked.connect(self.clear_all_SHA)
-
+        self.Load_File_SHA.clicked.connect(self.load_msg_SHA)
+        self.Calc_SHA.clicked.connect(self.SHA_512_SHA)
+        self.Clear_All_SHA.clicked.connect(self.clear_all_SHA)
 
     def load_msg_MAIN(self):
 
@@ -785,9 +784,9 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         # Clearing the text editors
         self.Input_RSA_MSG.setPlainText("")  # Assuming 'Input_X' is an input text editor
         self.RSA_Output.setPlainText("")  # Clearing the output text editor
+
     # ========================================================================================================================
     def load_msg_AUTH(self):
-
         options = QFileDialog.Options()
         file_name, _ = QFileDialog.getOpenFileName(
             self, "Open File", "", "Text Files (*.txt);;All Files (*)", options=options
@@ -870,8 +869,33 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.Input_RSA_Authen_msg.setPlainText("")  # Assuming 'Input_X' is an input text editor
         self.Output_RSA_Authen.setPlainText("")  # Clearing the output text editor
 
-# ==========================================================================================================================
-# Tab 5 Code
+    # ==========================================================================================================================
+    # Tab 5 Code
+    def load_msg_SHA(self):
+
+        options = QFileDialog.Options()
+        file_name, _ = QFileDialog.getOpenFileName(
+            self, "Open File", "", "Text Files (*.txt);;All Files (*)", options=options
+        )
+
+        if file_name:
+            try:
+                with open(file_name, "r", encoding='utf-8') as file:
+                    self.InputMSG_Sha.append(file.read())
+                    self.Output_Sha.Output_RSA_Authen("\nLoaded Message.")
+            except Exception as e:
+                print(f"Error loading file: {e}")
+
+    def SHA_512_SHA(self):
+        hash_result = hash_SHA512(self.InputMSG_Sha.toPlainText())
+        self.Output_Sha.append("\nSHA-512 Hash Generated.")
+        self.Output_Sha.append("\nHash: " + hash_result)
+
+    def clear_all_SHA(self):
+        # Clearing the text editors
+        self.InputMSG_Sha.setPlainText("")  # Assuming 'Input_X' is an input text editor
+        self.Output_Sha.setPlainText("")  # Clearing the output text editor
+
 
 class OverlayWidget(QWidget):
     def __init__(self):
@@ -890,7 +914,9 @@ class OverlayWidget(QWidget):
 
         # Add instructions label
         instructions_label = QLabel(
-            "User Guide!\n\nInstructions: *Follow the button order from top to bottom* \nYou can write directly into the input boxes \n1.Firstly, Load Message, RSA Key and Write AES Key in the txt box (16 byte Hex format)! \n2. Sign ==> ENC_AES ==> Send \n3. DEC_AES ==> Verify \n4. Clear for resetting. ")
+            "User Guide!\n\nInstructions: *Follow the button order from top to bottom* \nYou can write directly into "
+            "the input boxes \n1.Firstly, Load Message, RSA Key and Write AES Key in the txt box (16 byte Hex "
+            "format)! \n2. Sign ==> ENC_AES ==> Send \n3. DEC_AES ==> Verify \n4. Clear for clearing text boxes. ")
         layout.addWidget(instructions_label)
 
         # Add close button

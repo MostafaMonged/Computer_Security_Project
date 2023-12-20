@@ -92,8 +92,8 @@ def encrypt_RSA(plain_text, person):
     cipher_text = public_key.encrypt(
         plain_text.encode('utf-8'),
         padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
+            mgf=padding.MGF1(algorithm=hashes.SHA512()),
+            algorithm=hashes.SHA512(),
             label=None
         )
     )
@@ -109,8 +109,8 @@ def decrypt_RSA(cipher_text, person):
     plain_text = private_key.decrypt(
         binascii.unhexlify(cipher_text),
         padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
+            mgf=padding.MGF1(algorithm=hashes.SHA512()),
+            algorithm=hashes.SHA512(),
             label=None
         )
     )
@@ -126,10 +126,10 @@ def sign_RSA(plain_text, person):
     signature = private_key.sign(
         plain_text.encode('utf-8'),
         padding.PSS(
-            mgf=padding.MGF1(hashes.SHA256()),
+            mgf=padding.MGF1(hashes.SHA512()),
             salt_length=padding.PSS.MAX_LENGTH
         ),
-        hashes.SHA256()
+        hashes.SHA512()
     )
     print("Signature: Sign RSA ", signature)
 
@@ -146,10 +146,10 @@ def verify_RSA(signature, message, person):
             binascii.unhexlify(signature),
             message.encode('utf-8'),
             padding.PSS(
-                mgf=padding.MGF1(hashes.SHA256()),
+                mgf=padding.MGF1(hashes.SHA512()),
                 salt_length=padding.PSS.MAX_LENGTH
             ),
-            hashes.SHA256()
+            hashes.SHA512()
         )
 
         write_to_file(f"{person}_verified_text.txt",
