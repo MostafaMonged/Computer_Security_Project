@@ -38,11 +38,15 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.move(x, y)
 
         # Load icon from the file
-        icon = QIcon("MainIcon.png")
+        icon = QIcon("../assets/MainIcon.png")
         self.setWindowIcon(icon)
 
         # Load the css
-        self.setStyleSheet(open("css.css").read())
+        try:
+            with open("../assets/css.css", "r") as css_file:
+                self.setStyleSheet(css_file.read())
+        except FileNotFoundError:
+            print("CSS file not found")
 
         self.overlay = OverlayWidget()
         self.overlay.setGeometry(780, 500, 200, 200)
@@ -157,7 +161,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write or load a message before signing.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.Output_X.append("\nSigning with Alice...")
@@ -177,7 +181,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Sign First")
             msg_box.setText("\nPlease Enc file with AES before Verifying.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -188,7 +192,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Critical)
             msg_box.setWindowTitle("File Not Found")
             msg_box.setText(f"\nThe required signature file '{signature_file}' was not found in the current directory.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -221,7 +225,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write or load a message before signing.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.Output_X.append("\nSigning with Bob...")
@@ -241,7 +245,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Sign First")
             msg_box.setText("\nPlease Enc file with AES before Verifying.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -252,7 +256,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Critical)
             msg_box.setWindowTitle("File Not Found")
             msg_box.setText(f"\nThe required signature file '{signature_file}' was not found in the current directory.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -287,7 +291,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Sign First")
             msg_box.setText("Please sign the file with Alice or Bob before encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -299,7 +303,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in ecb_aes_key:
@@ -328,7 +332,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Sign First")
             msg_box.setText("Please sign the file with Alice or Bob before encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -340,7 +344,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in cbc_aes_key:
@@ -366,7 +370,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nWrong Mode")
             msg_box.setText("\nInvalid Mode: Decrypting ECB AES with CBC mode is not allowed.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return
         ecb_aes_key = self.AES_Key_In_X.toPlainText()
@@ -376,7 +380,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Decrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in ecb_aes_key:
@@ -394,7 +398,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.setIcon(QMessageBox.Critical)
                 msg_box.setWindowTitle("File Not Found")
                 msg_box.setText("The required file 'ECB_AES_Encrypted.txt' was not found in the current directory.")
-                msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+                msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
                 msg_box.exec_()
                 return  # Exit the function
             try:
@@ -414,7 +418,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nWrong Mode")
             msg_box.setText("\nInvalid Mode: Decrypting CBC AES with ECB mode is not allowed.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return
         cbc_aes_key = self.AES_Key_In_X.toPlainText()
@@ -424,7 +428,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Decrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in cbc_aes_key:
@@ -442,7 +446,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.setIcon(QMessageBox.Critical)
                 msg_box.setWindowTitle("File Not Found")
                 msg_box.setText("The required file 'CBC_AES_Encrypted.txt' was not found in the current directory.")
-                msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+                msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
                 msg_box.exec_()
                 return  # Exit the function
             self.Output_X.append("\nThe input string is of correct length (32 characters).")
@@ -491,7 +495,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Msg Path not found")
             msg_box.setText("Please Load a msg before encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -503,7 +507,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
 
@@ -533,7 +537,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Msg Path not found")
             msg_box.setText("Please Load a msg before encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -545,7 +549,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in AES_CBC_key:
@@ -575,7 +579,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Decrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
 
@@ -596,7 +600,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.setIcon(QMessageBox.Critical)
                 msg_box.setWindowTitle("File Not Found")
                 msg_box.setText("The required file 'ECB_AES_Encrypted.txt' was not found in the current directory.")
-                msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+                msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
                 msg_box.exec_()
                 return  # Exit the function
             try:
@@ -616,7 +620,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nWrong Mode")
             msg_box.setText("\nInvalid Mode: Decrypting CBC AES with ECB mode is not allowed.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return
         cbc_aes_key = self.InKeyAES_AES.toPlainText()
@@ -626,7 +630,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("\nkey is Required")
             msg_box.setText("\nPlease write a key before Decrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         for i in cbc_aes_key:
@@ -646,7 +650,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
                 msg_box.setIcon(QMessageBox.Critical)
                 msg_box.setWindowTitle("File Not Found")
                 msg_box.setText("The required file 'CBC_AES_Encrypted.txt' was not found in the current directory.")
-                msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+                msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
                 msg_box.exec_()
                 return  # Exit the function
             self.Output_AES.append("\nThe input string is of correct length (32 characters).")
@@ -657,7 +661,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
 
     def input_message_changed_AES(self):
         if not self.AES_current_file_path:  # If no file is loaded
-            self.AES_current_file_path = "MSG.txt"  # Set the file name to MSG.txt
+            self.AES_current_file_path = "../assets/MSG.txt"  # Set the file name to MSG.txt
 
             # Save the current text to the file
         try:
@@ -703,7 +707,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write a message before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.RSA_Output.append("\nEncrypting with Alice...")
@@ -729,7 +733,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write a message before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.RSA_Output.append("\nDecrypting with Alice...")
@@ -746,7 +750,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write a message before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.RSA_Output.append("\nEncrypting with Bob...")
@@ -772,7 +776,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write a message before Encrypting.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.RSA_Output.append("\nDecrypting with Bob...")
@@ -824,7 +828,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Warning)
             msg_box.setWindowTitle("Message Required")
             msg_box.setText("Please write or load a message before signing.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.exec_()
             return  # Exit the function if plain_text is empty
         self.Output_RSA_Authen.append("\nSigning with Alice...")
@@ -840,7 +844,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
             msg_box.setIcon(QMessageBox.Critical)
             msg_box.setWindowTitle("File Not Found")
             msg_box.setText(f"\nThe required signature file '{signature_file}' was not found in the current directory.")
-            msg_box.setWindowIcon(QIcon("msgbox.png"))  # Set the window icon
+            msg_box.setWindowIcon(QIcon("../assets/msgbox.png"))  # Set the window icon
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_()
             return
@@ -901,7 +905,7 @@ class OverlayWidget(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Quick User Guide")
-        icon = QIcon("GuideIcon.png")  # Replace with your icon file path
+        icon = QIcon("../assets/GuideIcon.png")  # Replace with your icon file path
         self.setWindowIcon(icon)
         # Make the overlay modal
         self.setWindowModality(Qt.ApplicationModal)
